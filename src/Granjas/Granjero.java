@@ -1,4 +1,4 @@
-package Granja;
+package Granjas;
 
 public class Granjero {
 	private String nombre; 

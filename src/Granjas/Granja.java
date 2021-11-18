@@ -1,4 +1,4 @@
-package Granja;
+package Granjas;
 
 public class Granja {
 	private Granjero granjero;
