@@ -91,6 +91,31 @@ public class Fecha {
 	public boolean esCorrecta() {
 		boolean mesCorrecto = (mes >= 1 && mes <= 12);
 		boolean diaCorrecto = (dia >= 1 && dia <= diasMes());
-		if( mesCorrecto & diaCorrecto) {return true;}else {return false;}
+		if( mesCorrecto && diaCorrecto) {return true;}else {return false;}
+	}
+	
+	public boolean precedeA(int queDia, int queMes, int queAño) {
+		
+		if(this.dia < queDia && this.mes <= queMes && this.año <= queAño) {
+			return true;
+		}else if(this.mes < queMes && this.año <= queAño) {
+			return true;
+		}else if(this.año < queAño) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public void avanzarDia() {
+		dia++;
+		if(dia > diasMes()) {
+			dia = 1;
+			mes++;
+			if(mes > 12) {
+				mes = 1;
+				año++;
+			}
+		}
 	}
 }
