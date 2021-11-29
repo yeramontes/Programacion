@@ -69,6 +69,21 @@ public class Hora {
 			}
 		}
 	}
+	
+	public String enFormatoAmPm() {
+		String ampm;
+		if(hora < 12) {
+			ampm = "AM";
+		}else if(hora == 12){
+			ampm = "PM";
+		}else {
+			ampm = "PM";
+			hora -= 12;
+		}
+		
+		return hora + ":" + minutos + ":" + segundos + " " + ampm;
+		
+	}
 
 	public String toString() {
 		StringBuilder str = new StringBuilder();
