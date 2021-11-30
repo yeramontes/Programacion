@@ -22,6 +22,10 @@ public class RelojAlarma {
 			}
 		}
 		
+		public void ponerEnHora(int hora, int minutos) {
+			reloj.ponerEnHora(hora, minutos);
+		}
+		
 		public String getHora() {
 			return reloj.getHora();
 		}
