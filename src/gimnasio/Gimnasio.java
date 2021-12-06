@@ -3,7 +3,7 @@ package gimnasio;
 /**
  * ENTREGA UT3
  * 
- * @author - (aquÃ­ pon tu nombre)
+ * @author - (Yerai Montes Fernández)
  * 
  * 
  *         Un gimnasio oferta clases de yoga, pilates y spinning en sus
@@ -146,7 +146,7 @@ public class Gimnasio {
 			totalAcumulado += precioClase * inscritos;
 		}
 		System.out.println("El precio de por clase es de : " + precioClase);
-		System.out.println("El total acumulado hasta el momento es : " + totalAcumulado);
+		System.out.printf("El total acumulado hasta el momento es : %.02f", totalAcumulado);
 
 		//////////////////////////////////////////////////////////////////////////////////
 
@@ -161,7 +161,7 @@ public class Gimnasio {
 			minsClasesTotales -= (tiempoAContar + DESCANSO);
 		}
 
-		System.out.println("El numero de clases por dia es de : " + numClases);
+		System.out.println("\nEl numero de clases por dia es de : " + numClases);
 
 		/////////////////////////////////////////////////////////////////////////////////
 
@@ -169,12 +169,12 @@ public class Gimnasio {
 		//////// ///////////////////////////////
 
 		int horaUltimaClase = HORA_PRIMER_CLASE + (horas * numClases);
-		int minutosUltimaClase = MINUTOS_PRIMERA_CLASE + (minutos * numClases);
+		int minutosUltimaClase = MINUTOS_PRIMERA_CLASE + (minutos * numClases) + (DESCANSO * numClases);
 		String ampm = "am";
 
-		if (minutosUltimaClase >= 60) {
-			horaUltimaClase += (minutosUltimaClase + (DESCANSO * numClases)) / 60;
-			minutosUltimaClase -= ((minutosUltimaClase + (DESCANSO * numClases)) / 60) * 60;
+		while(minutosUltimaClase >= 60) {
+			horaUltimaClase++;
+			minutosUltimaClase -= 60;
 		}
 
 		if (horaUltimaClase > 12) {
