@@ -214,7 +214,7 @@ public class Gimnasio {
 
 	/**
 	 * Devuelve el nombre de la actividad con más inscritos independientemente de
-	 * la sala
+	 * la sala.
 	 * 
 	 */
 	public String getActividad() {
