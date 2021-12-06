@@ -114,26 +114,8 @@ public class Gimnasio {
 	 * 
 	 */
 	public void tarificarClaseEnSala(int sala, char tipo, int horas, int minutos, int inscritos) {
-
-		//////// Total incritos en cada tipo de actividad /////////////////////////////
-
-		switch (tipo) {
-		case YOGA:
-			yoga += inscritos;
-			break;
-		case PILATES:
-			pilates += inscritos;
-			break;
-		case SPINNING:
-			spinning += inscritos;
-			break;
-		}
-
-		System.out.println("El total de inscritos en yoga es de : " + yoga);
-		System.out.println("El total de inscritos en pilates es de : " + pilates);
-		System.out.println("El total de inscritos en spinning es de : " + spinning);
-
-		///////////////////////////////////////////////////////////////////////////////
+		
+		
 
 		//////// Calcular el valor de la clase (3$ base + (horas y minutos)/15 <Solo se
 		//////// cuenta si son 15 minutos completos>)
@@ -145,8 +127,6 @@ public class Gimnasio {
 			precioClase = PRECIO_BASE + (ciclos * PRECIO_15MINUTOS);
 			totalAcumulado += precioClase * inscritos;
 		}
-		System.out.println("El precio de por clase es de : " + precioClase);
-		System.out.printf("El total acumulado hasta el momento es : %.02f", totalAcumulado);
 
 		//////////////////////////////////////////////////////////////////////////////////
 
@@ -160,8 +140,6 @@ public class Gimnasio {
 			numClases++;
 			minsClasesTotales -= (tiempoAContar + DESCANSO);
 		}
-
-		System.out.println("\nEl numero de clases por dia es de : " + numClases);
 
 		/////////////////////////////////////////////////////////////////////////////////
 
@@ -182,7 +160,7 @@ public class Gimnasio {
 			ampm = "pm";
 		}
 
-		System.out.printf("La ultima clase acabara a las %02d:%02d %s", horaUltimaClase, minutosUltimaClase, ampm);
+		
 
 		/////////////////////////////////////////////////////////////////////////////////
 
@@ -195,7 +173,36 @@ public class Gimnasio {
 		}
 
 		/////////////////////////////////////////////////////////////////////////////////
+		
+		///////// Imprime la salida /////////////////////////////////////////////////////
+		
+		System.out.print("\nSala Nº: " + sala);
+		
+		////////Total incritos en cada tipo de actividad /////////////////////////////
 
+		switch (tipo) {
+		case YOGA:
+			yoga += inscritos;
+			System.out.print("\tActividad: YOGA");
+			break;
+		case PILATES:
+			pilates += inscritos;
+			System.out.print("\tActividad: PILATES");
+			break;
+		case SPINNING:
+			spinning += inscritos;
+			System.out.print("\tActividad: SPINNING");
+			break;
+		}
+		
+		///////////////////////////////////////////////////////////////////////////////
+
+		System.out.print("\nLongitud: " + tiempoAContar);
+		System.out.print("\tDescanso: " + DESCANSO + "min.");
+		System.out.printf("\nPrecio clase: %.02f ", precioClase);
+		System.out.printf("\nClase ofertada en sala : %d veces al dia", numClases);
+		System.out.printf("\nLa ultima clase termina a las: %02d:%02d %s", horaUltimaClase, minutosUltimaClase, ampm);
+		System.out.println("\nTotal inscritos en sala: " + inscritos);
 	}
 
 	/**
