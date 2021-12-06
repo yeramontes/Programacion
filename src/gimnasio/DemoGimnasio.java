@@ -1,3 +1,4 @@
+package gimnasio;
 import java.util.Scanner;
 
 /**

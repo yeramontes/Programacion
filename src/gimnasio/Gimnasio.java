@@ -1,3 +1,4 @@
+package gimnasio;
 
 /**
  * ENTREGA UT3
@@ -113,91 +114,119 @@ public class Gimnasio {
 	 * 
 	 */
 	public void tarificarClaseEnSala(int sala, char tipo, int horas, int minutos, int inscritos) {
-		
+
 		//////// Total incritos en cada tipo de actividad /////////////////////////////
-		
+
 		switch (tipo) {
-		case 'Y':
-			yoga++;
+		case YOGA:
+			yoga += inscritos;
 			break;
-		case 'P':
-			pilates++;
+		case PILATES:
+			pilates += inscritos;
 			break;
-		case 'S':
-			spinning++;
+		case SPINNING:
+			spinning += inscritos;
 			break;
 		}
-		
+
 		System.out.println("El total de inscritos en yoga es de : " + yoga);
-		System.out.println("El total de inscritos en yoga es de : " + pilates);
-		System.out.println("El total de inscritos en yoga es de : " + spinning);
-		
+		System.out.println("El total de inscritos en pilates es de : " + pilates);
+		System.out.println("El total de inscritos en spinning es de : " + spinning);
+
 		///////////////////////////////////////////////////////////////////////////////
 
 		//////// Calcular el valor de la clase (3$ base + (horas y minutos)/15 <Solo se
 		//////// cuenta si son 15 minutos completos>)
 
 		int tiempoAContar = horas * 60 + minutos;
+		double precioClase = 0;
 		if (tiempoAContar >= 15) {
-			int ciclos;
-			ciclos = tiempoAContar / 15;
-			totalAcumulado += 3 + (tiempoAContar * PRECIO_15MINUTOS);
+			int ciclos = tiempoAContar / 15;
+			precioClase = PRECIO_BASE + (ciclos * PRECIO_15MINUTOS);
+			totalAcumulado += precioClase * inscritos;
 		}
-
+		System.out.println("El precio de por clase es de : " + precioClase);
 		System.out.println("El total acumulado hasta el momento es : " + totalAcumulado);
-		
+
 		//////////////////////////////////////////////////////////////////////////////////
 
-		///////// Numero de veces que se oferta la clase en un dia ///////////////////////
-		
-		int minsClasesTotales = ((HORA_ULTIMA_CLASE + 12) * 60 + MINUTOS_ULTIMA_CLASE)-(HORA_PRIMER_CLASE * 60 + MINUTOS_PRIMERA_CLASE);
-		int numClases;
-		while(minsClasesTotales >= (tiempoAContar + DESCANSO)) {
+		///////// Numero de veces que se oferta la clase en un dia
+		///////// ///////////////////////
+
+		int minsClasesTotales = ((HORA_ULTIMA_CLASE + 12) * 60 + MINUTOS_ULTIMA_CLASE)
+				- (HORA_PRIMER_CLASE * 60 + MINUTOS_PRIMERA_CLASE);
+		int numClases = 0;
+		while (minsClasesTotales >= tiempoAContar) {
 			numClases++;
 			minsClasesTotales -= (tiempoAContar + DESCANSO);
 		}
-		
+
 		System.out.println("El numero de clases por dia es de : " + numClases);
-		
+
 		/////////////////////////////////////////////////////////////////////////////////
-		
-		//////// La hora a la que acabara la ultima clase ///////////////////////////////
-		
+
+		//////// La hora a la que acabara la ultima clase
+		//////// ///////////////////////////////
+
 		int horaUltimaClase = HORA_PRIMER_CLASE + (horas * numClases);
 		int minutosUltimaClase = MINUTOS_PRIMERA_CLASE + (minutos * numClases);
 		String ampm = "am";
-		
-		if(minutosUltimaClase >= 60) {
-			horaUltimaClase += minutosUltimaClase / 60;
-			minutosUltimaClase -= ((minutosUltimaClase / 60) * 60);
+
+		if (minutosUltimaClase >= 60) {
+			horaUltimaClase += (minutosUltimaClase + (DESCANSO * numClases)) / 60;
+			minutosUltimaClase -= ((minutosUltimaClase + (DESCANSO * numClases)) / 60) * 60;
 		}
-		
-		if(horaUltimaClase > 12) {horaUltimaClase -= 12; ampm = "pm";}
-		
-		System.out.println("La ultima clase acabara a las " + horaUltimaClase + ":" + minutosUltimaClase + ampm);
-		
+
+		if (horaUltimaClase > 12) {
+			horaUltimaClase -= 12;
+			ampm = "pm";
+		}
+
+		System.out.printf("La ultima clase acabara a las %02d:%02d %s", horaUltimaClase, minutosUltimaClase, ampm);
+
 		/////////////////////////////////////////////////////////////////////////////////
-		
+
+		/////// Sala con maximo numero de incritos
+		/////// //////////////////////////////////////
+
+		if (inscritos > inscritosMaximoSpinning) {
+			salaMaximoSpinning = sala;
+			inscritosMaximoSpinning = inscritos;
+		}
+
+		/////////////////////////////////////////////////////////////////////////////////
+
 	}
 
 	/**
-     *  nº sala en la que hay más inscritos para spinning
-     */
-    public int getSala()
-    {
-     if(yoga > spinning) return yoga;
-     else if(spinning > yoga) return spinning;
-     else if(yoga > )
-    }
+	 * nº sala en la que hay más inscritos para spinning
+	 */
+	public int getSala() {
+		return salaMaximoSpinning;
+	}
 
 	/**
-     * Devuelve el nombre de la actividad con más inscritos independientemente de la sala
-     *  
-     */
-    public      getActividad()
-    {
-        
+	 * Devuelve el nombre de la actividad con más inscritos independientemente de
+	 * la sala
+	 * 
+	 */
+	public String getActividad() {
+		if (yoga > pilates && yoga > spinning) {
+			return "yoga";
+		} else if (pilates > yoga && pilates > spinning) {
+			return "pilates";
+		} else if (spinning > yoga && spinning > pilates) {
+			return "spinning";
+		} else {
+			if (yoga == pilates)
+				return "yoga y pilates tienen los mismos inscritos";
+			if (yoga == spinning)
+				return "yoga y spinning tienen los mismos inscritos";
+			if (pilates == spinning)
+				return "pilates y spinning tienen los mismos inscritos";
+		}
 
-    }
+		return "ERROR!!!!!";
+	}
 
 }
