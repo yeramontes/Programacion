@@ -1,0 +1,6 @@
+PROJECT TITLE: Bank Accounts
+PURPOSE OF PROJECT: Simple Example of bank accounts
+VERSION or DATE: 12/12/2021
+HOW TO START THIS PROJECT:
+AUTHORS: Tim Wahls & Yeramontes
+USER INSTRUCTIONS:
