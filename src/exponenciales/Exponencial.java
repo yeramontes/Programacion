@@ -30,22 +30,45 @@ public class Exponencial {
 		this.exponente = exponente;
 	}
 	
-	private int potencia(int a, int b) {
-		int potencia = a;
-		if(b >= 0) {
-			if(b == 0) {
-				potencia = 1;
-			}else {
-				for(int i = 1; i < b; i++) {
-					potencia *= a;
-				}
-			}
-		}
-		return potencia;
+	private double potencia(int a, int b) {
+		return Math.pow(a, b);
 	}
 	
 	public double valorExponencial() {
-		
+		return potencia(this.base, this.exponente);
+	}
+	
+	public Exponencial multiplicar(Exponencial otro) {
+		if(this.base == otro.base) {
+			Exponencial resultado = new Exponencial(this.base, (this.exponente + otro.exponente));
+			return resultado;
+		}else {
+			Exponencial resultado = new Exponencial((this.base * otro.base), this.exponente);
+			return resultado;
+		}
+	}
+	
+	public Exponencial dividir(Exponencial otro) {
+		if(this.base == otro.base) {
+			Exponencial resultado = new Exponencial(this.base, (this.exponente - otro.exponente));
+			return resultado;
+		} else {
+			Exponencial resultado = new Exponencial((this.base / otro.base), this.exponente);
+			return resultado;
+		}
+	}
+	
+	public Exponencial elevar(int n) {
+		Exponencial resultado = new Exponencial(this.base, (this.exponente * n));
+		return resultado;
+	}
+	
+	public String toString() {
+		String resultado = "";
+		resultado += "Base: " + this.base;
+		resultado += "\tExponente: " + this.exponente;
+		resultado += "\tValor: " + valorExponencial();
+		return resultado;
 	}
 	
 }
