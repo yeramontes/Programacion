@@ -84,21 +84,11 @@ public class Fraccion {
 	}
 	
 	public boolean igualQue(Fraccion otra) {
-		int numerador1 = this.numerador * otra.denominador;
-		int denominador1 = this.denominador * otra.denominador;
-		int numerador2 = otra.numerador * this.denominador;
-		int denominador2 = otra.denominador * this.denominador;
-		return numerador1 == numerador2 && denominador1 == denominador2;
-		
+		return (this.numerador / this.denominador) == (otra.numerador / otra.denominador);
 	}
 	
 	public boolean menorQue(Fraccion otra) {
-		int numerador1 = this.numerador * otra.denominador;
-		int denominador1 = this.denominador * otra.denominador;
-		int numerador2 = otra.numerador * this.denominador;
-		int denominador2 = otra.denominador * this.denominador;
-		return numerador1 < numerador2;
-		
+		return (this.numerador / this.denominador) < (otra.numerador / otra.denominador);
 	}
 	
 	public int mcd(int num1, int num2) {
