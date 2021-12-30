@@ -11,9 +11,9 @@ public class Pokemon {
 	private String name;
 	
 	public Pokemon() {
-		health = ((int)(Math.random()) * INITIAL_HEALTH);
-		strenght = ((int)(Math.random()) * INITIAL_STRENGHT);
-		speed = ((int)(Math.random()) * INITIAL_SPEED);
+		health = (int)(Math.random() * INITIAL_HEALTH);
+		strenght = (int)(Math.random() * INITIAL_STRENGHT);
+		speed = (int)(Math.random() * INITIAL_SPEED);
 		name = "";
 	}
 	

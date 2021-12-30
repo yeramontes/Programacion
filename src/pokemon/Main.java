@@ -11,10 +11,12 @@ public class Main {
 		int opcion;
 		do {
 			System.out.println();
+			System.out.println();
 			System.out.println("Elija la opción");
 			System.out.println("1. Utilizar los pokemons del juego");
 			System.out.println("2. Crear los pokemons aleatoriamente");
 			System.out.println("3. Salir");
+			System.out.println();
 			opcion = sc.nextInt();
 			
 			if(opcion == 1) {
@@ -25,6 +27,9 @@ public class Main {
 				initPokemonsRandomly();
 				initCombat();
 				
+			}else if(opcion == 3){
+				System.out.println("Has cerrado el juego.");
+				
 			}else {
 				System.out.println("Opcion incorrecta.");
 				
@@ -32,7 +37,6 @@ public class Main {
 			
 		} while(opcion != 3);
 		
-		System.out.println("Has cerrado el juego.");
 	}
 	
 	private static void initPokemons() {
