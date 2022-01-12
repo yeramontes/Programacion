@@ -4,8 +4,10 @@ import java.util.Scanner;
 public class Main {
 	
 	private static final int NUM_POKEMONS = 5;
-	private static Pokemon[] pokemons = new Pokemon[NUM_POKEMONS];
+	public static Pokemon[] pokemons = new Pokemon[NUM_POKEMONS];
+	private static Pokemon[] maquina;
 	private static Scanner sc = new Scanner(System.in);
+	public static int coins;
 	
 	public Main() {
 		int opcion;
@@ -15,7 +17,9 @@ public class Main {
 			System.out.println("Elija la opción");
 			System.out.println("1. Utilizar los pokemons del juego");
 			System.out.println("2. Crear los pokemons aleatoriamente");
-			System.out.println("3. Salir");
+			System.out.println("3.PvE");
+			System.out.println("4. Cajas");
+			System.out.println("5. Salir");
 			System.out.println();
 			opcion = sc.nextInt();
 			
@@ -25,9 +29,16 @@ public class Main {
 				
 			}else if(opcion == 2) {
 				initPokemonsRandomly();
-				initCombat();
+				coins += initCombat();
 				
 			}else if(opcion == 3){
+				initPokemons();
+				initPvE();
+				
+			}else if(opcion == 4) {
+				cajas();
+				
+			}else if(opcion == 5){
 				System.out.println("Has cerrado el juego.");
 				
 			}else {
@@ -56,7 +67,53 @@ public class Main {
 		for(int i = 0; i < pokemons.length; i++) {
 			pokemons[i] = new Pokemon();
 			pokemons[i].setName("pokemon" + i);
+			
 		}
+	}
+	
+	//////
+	//Metodo para cargar los pokemons guardados//
+	/////
+	
+	public void initSavedPokemons(Pokemon pokemons[]) {
+		for(int i = 0; i < this.pokemons.length; i++) {
+			this.pokemons[i] = pokemons[i];
+		}
+	}
+	
+	private static void initPvE(){
+		maquina = new Pokemon[NUM_POKEMONS];
+		for(int i = 0; i < maquina.length; i++) {
+			maquina[i] = new Pokemon();
+			maquina[i].setName("pokemon" + i);
+			
+		}
+
+		for(int i = 0; i < maquina.length; i++) {
+			int pokemon;
+			while(maquina[i].getHealth() > 0) {
+				System.out.println();
+				System.out.println("Combate contra: " + maquina[i].getName());
+				System.out.println(maquina[i].toString());
+				showPokemons();
+				do {
+					System.out.println("\nEscoge el pokemon:");
+					pokemon = sc.nextInt() - 1;
+					
+				}while(pokemon >= pokemons.length);
+				
+				Battle.initBattle(pokemons[pokemon], maquina[i]);
+
+			}
+			
+			if(pokemons[0].getHealth() <= 0 && pokemons[1].getHealth() <= 0 && pokemons[2].getHealth() <= 0 && pokemons[3].getHealth() <= 0 && pokemons[4].getHealth() <= 0) {
+				System.out.println("Has perdido!");
+				return;
+				
+			}
+		}
+		
+		System.out.println("Has ganado!");
 	}
 	
 	private static void showPokemons() {
@@ -65,14 +122,17 @@ public class Main {
 		}
 	}
 	
-	public static void initCombat() {
+	public static int initCombat() {
 		showPokemons();
 		System.out.println("Escoge el primer Pokemon: ");
 		int primerPokemon = sc.nextInt() - 1;
 		System.out.println("Escoge el segundo Pokemon: ");
 		int segundoPokemon = sc.nextInt() - 1;
 		Battle.initBattle(pokemons[primerPokemon], pokemons[segundoPokemon]);
+		int valor = (pokemons[primerPokemon].getHealth() > 0) ? 100 : 0;
+		return valor;
 	}
+	
 	
 	 public static void main(String[] args) {
 		Main x = new Main();

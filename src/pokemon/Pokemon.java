@@ -43,8 +43,24 @@ public class Pokemon {
 	public int getStrenght() {
 		return strenght;
 	}
+	
+	public void setStrenght(int strength) {
+		this.strenght = strength;
+	}
 
 	public int getSpeed() {
 		return speed;
 	}	
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	
+	public String toString() {
+		String resultado = "";
+		resultado += "Velocidad: " +  speed;
+		resultado += "Fuerza: " + strenght;
+		resultado += "Salud: " + health;
+		return resultado;
+	}
 }
