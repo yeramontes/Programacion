@@ -1,9 +1,9 @@
 package animales;
 
 public abstract class Animal {
-	private String nombre;
-	private int patas;
-	private Persona dueño;
+	protected String nombre;
+	protected int patas;
+	protected Persona dueño;
 	
 	public Animal(String nombre, int patas, Persona dueño) {
 		this.nombre = nombre;

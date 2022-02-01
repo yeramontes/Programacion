@@ -20,6 +20,6 @@ public class Perro extends Animal {
 
 	@Override
 	public void representacion() {
-		
+		System.out.println("Soy un perro, me llamo " + this.nombre + ", tengo " + this.patas + " patas, mi dueño es " + this.dueño.getNombre() + " y mi lugar favorito es " + this.lugarFavorito);
 	}
 }
