@@ -62,14 +62,8 @@ public class Aeropuerto{
 			if(i instanceof Regular) regulares.add((Regular)i);
 		}
 		
-		Collections.sort(regulares, new Comparator<Regular>() {
-
-			public int compare(Regular v1 , Regular v2) {
-				if(v1.getPlazasLibres() > v2.getPlazasLibres()) return 1;
-				else if(v1.getPlazasLibres() < v2.getPlazasLibres()) return -1;
-				else return 0;
-			}
-		});
+		Collections.sort(regulares, new ComparatorPlazasLibres());
+		Collections.reverse(regulares);
 		
 		for(Regular x : regulares) System.out.println(x.toString());
 	}
@@ -85,10 +79,12 @@ public class Aeropuerto{
 			List<Vuelo> v = x.getArrayList();
 			for(Vuelo i : v) {
 				if(i instanceof Regular) {
-					if(((Regular) i).getPlazasLibres() > 0) conPlazas.add(i);
+					if(((Regular) i).getPlazasLibres() > 0) conPlazas.add((Regular)(i));
 				}
 			}
 		}
+		Collections.sort(conPlazas, new ComparatorPlazasLibres());
+		Collections.reverse(conPlazas);
 		return conPlazas;
 	}
 
@@ -125,7 +121,7 @@ public class Aeropuerto{
 			while(it.hasNext()) {
 				Vuelo v = it.next();
 				if(v instanceof Charter && ((Charter) v).getNifString().equals(nifEmpresa)) {
-					vuelos.remove(v);
+					it.remove();;
 					numBorrados++;
 				}
 			}

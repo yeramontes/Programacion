@@ -44,7 +44,7 @@ public class Aerolinea implements Comparable<Aerolinea>{
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n" + this.nombre + "\n====================");
 		Collections.sort(vuelos);
-		Collections.reverse(vuelos);
+		//Collections.reverse(vuelos);
 		for(Vuelo x : vuelos) {
 			sb.append(x.toString());
 		}
