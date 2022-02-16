@@ -4,11 +4,17 @@ public class Charter extends Vuelo{
 	
 	private String nif;
 
-	public Charter(String destino,String avion, int plazas, String nif) {
+	public Charter(String destino,String avion, int plazas, int plazasLibres, String nif, double precioBillete) {
 		this.destino = destino;
 		this.avion = avion;
 		this.plazas = plazas;
 		this.nif = nif;
+		this.precioBillete = calcularPrecio(precioBillete);
+		this.plazasLibres = plazasLibres;
+	}
+	
+	private double calcularPrecio(double precioBillete) {
+		return (plazasLibres < 200) ? (precioBillete * 1.25 + 50) : (precioBillete * 1.25);
 	}
 
 	public int getNif() {
@@ -32,6 +38,7 @@ public class Charter extends Vuelo{
 		sb.append("\nAvion: " + this.avion);
 		sb.append("\nPlazas: " + this.plazas);
 		sb.append("\nNIF Empresa: " + this.nif);
+		sb.append("\nPrecio billete: " + String.format("%.2f", this.precioBillete));
 		return sb.toString();
 	}
 }

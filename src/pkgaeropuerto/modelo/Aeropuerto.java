@@ -137,11 +137,53 @@ public class Aeropuerto{
 	 */
 	public void imprimirListaVuelos(List<Vuelo> listaVuelos) {
 		for(Vuelo i : listaVuelos) {
-			if(i instanceof Regular)System.out.println(((Regular) i).toString());
-			if(i instanceof Charter) System.out.println(((Regular) i).toString());
-			else System.out.println(i.toString());
+			System.out.println(i.toString());
 		}
 	}
+	
+	public void imprimirVuelosMasPasajerosQueMedia() {
+
+
+		int suma = 0;
+		double c = 0;
+		for (Aerolinea a : this.aeroli) {
+			for (Vuelo v : a.getArrayList()) {
+				c++;
+				suma += v.getPlazas();
+			}
+		}
+		for (Aerolinea a : this.aeroli) {
+			List<Vuelo> vuelos = a.getArrayList();
+			Iterator<Vuelo> it = vuelos.iterator();
+			while(it.hasNext()) {
+				if(it.next().getPlazas() < (suma / c)) it.remove();
+			}
+			imprimirListaVuelos(vuelos);
+		}
+
+	}
+	
+	public void imprimirVuelosPorAerolineaOrdenadorPorPrecio(String aerolinea) {
+		for(Aerolinea i : aeroli) {
+			if(i.getNombre().equals(aerolinea)) {
+				List<Vuelo> vuelos = i.getArrayList();
+				Collections.sort(vuelos, new Comparator<Vuelo>() {
+	
+					@Override
+					public int compare(Vuelo v1, Vuelo v2) {
+						if(v1.getPrecioBillete() > v2.getPrecioBillete()) return 1;
+						if(v1.getPrecioBillete() < v2.getPrecioBillete()) return -1;
+						else return 0;
+					}
+					
+				});
+				
+				for(Vuelo j : vuelos) System.out.println(j.toString());
+			}
+		}
+	}
+	
+	
 
 	/**
 	 * Represetación textual del mapa tal y como se muestra en el enunciado
@@ -167,13 +209,14 @@ public class Aeropuerto{
 				String destino = vuelo[1];
 				String avion = vuelo[2];
 				int plazas = Integer.parseInt(vuelo[3].trim());
+				int plazasLibres = Integer.parseInt(vuelo[4].trim());
+				double precioBillete = Integer.parseInt(vuelo[5].trim());
 				if (vuelo[0].equals("R")) {
-					int plazasLibres = Integer.parseInt(vuelo[4].trim());
-					this.addVuelo(aerolinea, new Regular(destino, avion, plazas, plazasLibres));
+					this.addVuelo(aerolinea, new Regular(destino, avion, plazas, plazasLibres, precioBillete));
 				}
 				else {
 					String nifEmpresa = vuelo[4];
-					this.addVuelo(aerolinea, new Charter(destino, avion, plazas, nifEmpresa));
+					this.addVuelo(aerolinea, new Charter(destino, avion, plazas, plazasLibres, nifEmpresa, precioBillete));
 				}
 			}
 

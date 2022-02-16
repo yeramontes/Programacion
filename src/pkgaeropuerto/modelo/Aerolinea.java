@@ -33,6 +33,10 @@ public class Aerolinea implements Comparable<Aerolinea>{
 	public void addVuelo(Vuelo vuelo) {
 		vuelos.add(vuelo);
 	}
+	
+	public void ordenarVuelos() {
+		Collections.sort(vuelos);
+	}
 
 	@Override
 	public int compareTo(Aerolinea o) {
@@ -43,8 +47,6 @@ public class Aerolinea implements Comparable<Aerolinea>{
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n" + this.nombre + "\n====================");
-		Collections.sort(vuelos);
-		//Collections.reverse(vuelos);
 		for(Vuelo x : vuelos) {
 			sb.append(x.toString());
 		}
