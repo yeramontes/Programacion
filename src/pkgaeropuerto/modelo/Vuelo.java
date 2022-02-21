@@ -7,6 +7,10 @@ public class Vuelo implements Comparable<Vuelo>{
 	protected int plazasLibres;
 	protected double precioBillete;
 	
+	public Vuelo(String destino, String avion, int plazas, int plazasLibres, double precioBillete ) {
+		
+	}
+	
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n\nVuelo " + this.getClass().getSimpleName());

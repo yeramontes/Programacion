@@ -216,7 +216,7 @@ public class Aeropuerto{
 				}
 				else {
 					String nifEmpresa = vuelo[4];
-					this.addVuelo(aerolinea, new Charter(destino, avion, plazas, plazasLibres, nifEmpresa, precioBillete));
+					this.addVuelo(aerolinea, new Charter(destino, avion, plazas, plazasLibres, precioBillete, nifEmpresa));
 				}
 			}
 

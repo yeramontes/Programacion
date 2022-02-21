@@ -5,23 +5,12 @@ import java.time.LocalTime;
 public class Regular extends Vuelo{
 	private LocalTime horario;
 	
-	public Regular(String destino,String avion, int plazas) {
-		this.destino = destino;
-		this.avion = avion;
-		this.plazas = plazas;
-		this.horario = LocalTime.now();
-	}
-	
 	public Regular(String destino,String avion, int plazas, int plazasLibres, double precioBillete) {
-		this.destino = destino;
-		this.avion = avion;
-		this.plazas = plazas;
-		this.plazasLibres = plazasLibres;
+		super(destino, avion, plazas, plazasLibres, calcularBillete(precioBillete, plazasLibres));
 		this.horario = LocalTime.now();
-		this.precioBillete = calcularBillete(precioBillete);
 	}
 	
-	private double calcularBillete(double precioBillete) {
+	private static double calcularBillete(double precioBillete, int plazasLibres) {
 		return (precioBillete * 1.1) + (5 * plazasLibres);
 	}
 	
@@ -32,6 +21,10 @@ public class Regular extends Vuelo{
 	
 	public int getPlazasLibres() {
 		return this.plazasLibres;
+	}
+	
+	public LocalTime getHorario() {
+		return this.horario;
 	}
 	
 	@Override

@@ -4,16 +4,12 @@ public class Charter extends Vuelo{
 	
 	private String nif;
 
-	public Charter(String destino,String avion, int plazas, int plazasLibres, String nif, double precioBillete) {
-		this.destino = destino;
-		this.avion = avion;
-		this.plazas = plazas;
+	public Charter(String destino,String avion, int plazas, int plazasLibres, double precioBillete, String nif) {
+		super(destino, avion, plazas, plazasLibres, calcularPrecio(precioBillete, plazasLibres));
 		this.nif = nif;
-		this.precioBillete = calcularPrecio(precioBillete);
-		this.plazasLibres = plazasLibres;
 	}
 	
-	private double calcularPrecio(double precioBillete) {
+	private static double calcularPrecio(double precioBillete, int plazasLibres) {
 		return (plazasLibres < 200) ? (precioBillete * 1.25 + 50) : (precioBillete * 1.25);
 	}
 
