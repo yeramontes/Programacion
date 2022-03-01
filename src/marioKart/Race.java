@@ -24,21 +24,21 @@ public class Race {
 		this.circuit = circuit;
 	}
 	
-	public boolean notAllFinished() {
+	private boolean notAllFinished() {
 		if(karts.size() == 0) return true;
 		else return false;
 	}
 	
-	public boolean isFinished(Kart kart) {
+	private boolean isFinished(Kart kart) {
 		return (kart.getPosition() >= this.circuit.getDistance()) ? true : false;
 	}
 	
-	public void moveToFinished(Kart kart) {
+	private void moveToFinished(Kart kart) {
 		this.finishedKarts.add(kart);
 		this.karts.remove(kart);
 	}
 	
-	public void moveKart(Kart kart) {
+	private void moveKart(Kart kart) {
 		int movedPositions = kart.mover() - circuit.difficulty();
 		kart.setPosition(kart.getPosition() + movedPositions);
 	}
