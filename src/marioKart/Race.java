@@ -25,8 +25,8 @@ public class Race {
 	}
 	
 	private boolean notAllFinished() {
-		if(karts.size() == 0) return true;
-		else return false;
+		if(karts.size() == 0) return false;
+		else return true;
 	}
 	
 	private boolean isFinished(Kart kart) {
@@ -48,7 +48,7 @@ public class Race {
 	// ACORDARSE DE CAMBIAR LA PRIVACIDAD DE LOS METODOS
 	
 	public void run() {
-		while(!notAllFinished()) {
+		while(notAllFinished()) {
 			Iterator<Kart> it = karts.iterator();
 			while(it.hasNext()) {
 				Kart kart = it.next();

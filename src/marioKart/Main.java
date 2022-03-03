@@ -4,6 +4,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		/*
+		 * DESPUES DE ACABAR EL EJERCICIO ENTERO LEO LA PARTE DEL CONTROL DE VERSIONES
+		 * *** POR FAVOR PONLO AL PRINCIPIO EN EL PROXIMO 🤦‍♂️😂 ***
+		 * 
+		 * 
+		 * LINK DEL REPOSITORIO : https://github.com/yeramontes/Programacion/tree/master/src/marioKart
+		 */
+		
 		Race race = new Race("Super Cup");
 		Kart luigi = new Kart("Luigi");
 		race.addKart(luigi);
