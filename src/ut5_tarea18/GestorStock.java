@@ -11,9 +11,9 @@ public class GestorStock {
 		this.productos = new ArrayList<Producto>();
 	}
 	
-	public void añadirProductos(Producto p) {
+	public void añadirProductos(Producto p) throws Exception {
 		for (Producto i : productos) {
-			if(i.getId() == p.getId()) return;
+			if(i.getId() == p.getId()) throw new Exception("DuplicatedElement");
 		}
 		productos.add(p);
 	}
@@ -60,20 +60,21 @@ public class GestorStock {
 	}
 	
 	public int cantidadEnStock(int id) {
-		for (Producto p : productos) {
-			if(p.getId() == id) return p.getStock();
+		try {
+			return localizarProducto(id).getStock();
+		}catch(NullPointerException e) {
+			return -1;
 		}
-		return -1;
 	}
 	
-	public String recibirProducto(int id, int cantidad) {
+	public void recibirProducto(int id, int cantidad) throws Exception {
 		for (Producto p : productos) {
 			if(p.getId() == id) {
 				p.incrementarCantidad(cantidad);
-				return null;
+				return;
 			}
 		}
-		return "No se ha encontrado ningun producto con ese id";
+		throw new Exception("UnexpectedId");
 	}
 	
 	public String escribirMenorQue(int minimo) {
