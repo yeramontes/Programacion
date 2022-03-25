@@ -60,7 +60,7 @@ public class Producto {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Producto [\nid=");
+		builder.append("\nProducto [\nid=");
 		builder.append(id);
 		builder.append("\nnombre=");
 		builder.append(nombre);

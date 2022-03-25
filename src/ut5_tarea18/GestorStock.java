@@ -12,6 +12,9 @@ public class GestorStock {
 	}
 	
 	public void añadirProductos(Producto p) {
+		for (Producto i : productos) {
+			if(i.getId() == p.getId()) return;
+		}
 		productos.add(p);
 	}
 	
@@ -47,10 +50,37 @@ public class GestorStock {
 		return null;
 	}
 	
+	// Esto es un metodo sobrecargado, lo diferencia el parametro que se le pasa.
+	
+	public Producto localizarProducto(String nombre) {
+		for (Producto p : productos) {
+			if(p.getNombre().equals(nombre)) return p;
+		}
+		return null;
+	}
+	
 	public int cantidadEnStock(int id) {
 		for (Producto p : productos) {
 			if(p.getId() == id) return p.getStock();
 		}
 		return -1;
+	}
+	
+	public String recibirProducto(int id, int cantidad) {
+		for (Producto p : productos) {
+			if(p.getId() == id) {
+				p.incrementarCantidad(cantidad);
+				return null;
+			}
+		}
+		return "No se ha encontrado ningun producto con ese id";
+	}
+	
+	public String escribirMenorQue(int minimo) {
+		StringBuilder sb = new StringBuilder();
+		for (Producto p : productos) {
+			if(p.getStock() < minimo) sb.append(p.toString());
+		}
+		return sb.toString();
 	}
 }
