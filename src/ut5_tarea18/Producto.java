@@ -11,7 +11,11 @@ public class Producto {
 		this.stock = stock;
 	}
 	
-	
+	public Producto(int id, String nombre, int stock) {
+		this.id = id;
+		this.nombre = nombre;
+		this.stock = stock;
+	}
 	
 	public String getNombre() {
 		return nombre;
