@@ -43,10 +43,6 @@ public class Race {
 		kart.setPosition(kart.getPosition() + movedPositions);
 	}
 	
-	// AQUI HAY ERROR, AL BORRAR DE LA LISTA NO SE ACTUALIZA EL ITERADOR Y PETA
-	// **** ¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡¡ ARREGLAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	// ACORDARSE DE CAMBIAR LA PRIVACIDAD DE LOS METODOS
-	
 	public void run() {
 		while(notAllFinished()) {
 			Iterator<Kart> it = karts.iterator();
