@@ -5,6 +5,7 @@ public class Libro {
 	private String autor;
 	private int nPaginas;
 	private Estado estado;
+	private String fechaPrestado;
 	
 	public Libro(String titulo, String autor, int nPaginas, Estado estado) {
 		super();
@@ -12,8 +13,10 @@ public class Libro {
 		this.autor = autor;
 		this.nPaginas = nPaginas;
 		this.estado = estado;
+		this.fechaPrestado = null;
 	}
-	
+
+
 	public String getTitulo() {
 		return titulo;
 	}
@@ -52,6 +55,14 @@ public class Libro {
 	
 	public void devolver() {
 		this.estado = Estado.DISPONIBLE;
+	}	
+	
+	public String getFechaPrestado() {
+		return fechaPrestado;
+	}
+
+	public void setFechaPrestado(String fechaPrestado) {
+		this.fechaPrestado = fechaPrestado;
 	}
 
 	@Override

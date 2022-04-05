@@ -1,5 +1,7 @@
 package biblioteca;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -93,15 +95,43 @@ public class Libreria {
 			HashSet<Libro> setLibros = libros.get(autor);
 			for(Libro libro : setLibros) {
 				if(libro.getTitulo().equals(titulo)) {
-					if(libro.getEstado() == Estado.PRESTADO) return "El libro ya esta prestado";
+					if(libro.getEstado() == Estado.PRESTADO) {
+						return "El libro ya esta prestado";
+					}
 					else {
 						libro.setEstado(Estado.PRESTADO);
+						libro.setFechaPrestado(obtenerFechaPrestamo());
 						return null;
 					}
 				}
 			}
 		}
 		return "El libro no se encuentra en la biblioteca";
+	}
+	
+	public String devolverLibro(String titulo) {
+		for(String autor : libros.keySet()) {
+			HashSet<Libro> setLibros = libros.get(autor);
+			for(Libro libro : setLibros) {
+				if(libro.getTitulo().equals(titulo)) {
+					if(libro.getEstado() == Estado.PRESTADO) {
+						libro.setEstado(Estado.DISPONIBLE);
+						libro.setFechaPrestado(null);
+						return "Libro devuelto";
+					}
+					else {
+						return "Eh weon de donde has sacado eso?";
+					}
+				}
+			}
+		}
+		return "El libro no se encuentra en la biblioteca";
+	}
+	
+	private String obtenerFechaPrestamo() {
+		LocalDate fecha = LocalDate.now();
+		DateTimeFormatter hoy =  DateTimeFormatter.ofPattern("dd MMM yyyy");
+		return fecha.format(hoy);
 	}
 	
 }
