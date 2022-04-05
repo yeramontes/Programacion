@@ -76,6 +76,10 @@ public class Libro {
 		builder.append(nPaginas);
 		builder.append(", estado=");
 		builder.append(estado);
+		if(this.estado == Estado.PRESTADO) {
+			builder.append(", fechaPrestado= ");
+			builder.append(this.fechaPrestado);
+		}
 		builder.append("]");
 		return builder.toString();
 	}
