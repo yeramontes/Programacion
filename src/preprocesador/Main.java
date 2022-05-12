@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class Main {
 	private static List<String> archivo;
-	private static final String[]  COMENTARIOS = {"/**", "/*",  "*/", "//"};
 	private static String nombre;
 	
 	public static void main(String[] args) {
@@ -59,7 +58,6 @@ public class Main {
 		Iterator<String> it = archivo.iterator();
 		while(it.hasNext()) {
 			String fila = it.next();
-			String inicio, end;
 			if(!fila.isEmpty()) {
 				
 				if(fila.contains("//")) {
