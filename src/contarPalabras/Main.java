@@ -100,5 +100,6 @@ public class Main {
 		while(sc.hasNext()) {
 			archivo.add(sc.nextLine());
 		}
+		sc.close();
 	}
 }
